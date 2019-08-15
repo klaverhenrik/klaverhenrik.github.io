@@ -26,11 +26,20 @@ function drop(ev) {
   //ev.target.appendChild(document.getElementById(data));
   
   var reader = new FileReader();
-  reader.onload = function(e){
-    var dropdata = new Uint8Array(e.target.result);
-  };
+  reader.onload = e => {
+      // Fill the image & call predict.
+      let img = document.createElement('img');
+      img.src = e.target.result;
+      img.width = IMAGE_SIZE;
+      img.height = IMAGE_SIZE;
+      img.onload = () => predict(img);
+    };
+  
+  //reader.onload = function(e){
+  //  var dropdata = new Uint8Array(e.target.result);
+  //};
   //reader.readAsText(e.dataTransfer.files[0]);  // If text 
-  reader.readAsArrayBuffer(ev.dataTransfer.files[0]); // If binary
+  reader.readAsDataURL(ev.dataTransfer.files[0]); // If binary
   console.log(ev);
 }
 
