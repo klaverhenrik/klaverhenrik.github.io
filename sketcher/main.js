@@ -17,7 +17,7 @@ $(function() {
     canvas.backgroundColor = '#ffffff';
     canvas.isDrawingMode = 0;
     canvas.freeDrawingBrush.color = "black";
-    canvas.freeDrawingBrush.width = 10;
+    canvas.freeDrawingBrush.width = 50;
     canvas.renderAll();
     //setup listeners 
     canvas.on('mouse:up', function(e) {
@@ -203,9 +203,8 @@ function preprocess(imgData) {
         
         //normalize 
         const offset = tf.scalar(255.0);
-        //const normalized = tf.scalar(1.0).sub(resized.div(offset));
-	const normalized = resized.div(offset);
-
+        const normalized = tf.scalar(1.0).sub(resized.div(offset));
+	
         //We add a dimension to get a batch shape 
         const batched = normalized.expandDims(0)
         return batched
