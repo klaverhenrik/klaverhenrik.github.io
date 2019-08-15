@@ -21,8 +21,9 @@ function allowDrop(ev) {
 
 function drop(ev) {
   ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
+  console.log(ev);
+  //var data = ev.dataTransfer.getData("text");
+  //ev.target.appendChild(document.getElementById(data));
 }
 
 //import * as tf from '@tensorflow/tfjs';
