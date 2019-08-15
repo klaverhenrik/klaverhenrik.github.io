@@ -15,6 +15,16 @@
  * =============================================================================
  */
 
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+
 //import * as tf from '@tensorflow/tfjs';
 
 import {IMAGENET_CLASSES} from './my_classes.js';
@@ -192,5 +202,10 @@ const demoStatusElement = document.getElementById('status');
 const status = msg => demoStatusElement.innerText = msg;
 
 const predictionsElement = document.getElementById('predictions');
+
+const dropfieldElement = document.getElementById('div1');
+dropfieldElement.addEventListener("dragenter", allowDrop, false);
+dropfieldElement.addEventListener("dragover", allowDrop, false);
+dropfieldElement.addEventListener("drop", drop, false);
 
 mobilenetDemo();
