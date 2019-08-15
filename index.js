@@ -24,6 +24,14 @@ function drop(ev) {
   console.log(ev);
   //var data = ev.dataTransfer.getData("text");
   //ev.target.appendChild(document.getElementById(data));
+  
+  var reader = new FileReader();
+  reader.onload = function(e){
+    var dropdata = new Uint8Array(e.target.result);
+  };
+  //reader.readAsText(e.dataTransfer.files[0]);  // If text 
+  reader.readAsArrayBuffer(ev.dataTransfer.files[0]); // If binary
+  console.log(ev);
 }
 
 //import * as tf from '@tensorflow/tfjs';
