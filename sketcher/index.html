@@ -144,6 +144,7 @@ limitations under the License.
     </section>
 
     <section>
+		<p class='section-head'>Description</p>
 		<p>This simple demo was inspired by <a href='https://github.com/zaidalyafeai/zaidalyafeai.github.io/tree/master/sketcher' target="_blank">Sketcher</a> by Zaid Alyfeai. Sketcher is a simple tool that uses a Convolutional Neural Network (CNN) to recognize drawings from the <a href='https://www.kaggle.com/c/quickdraw-doodle-recognition' target="_blank">QuickDraw dataset</a>. I modified Sketcher to recognize handwritten digits from 0 to 9.
 		</p>
 		<p>You can easily retrain the CNN to recognize objects of <em>your</em> choice using <a href='https://colab.research.google.com/notebooks/welcome.ipynb' target="_blank">Google Colab</a>. I have provided a template with detailed instructions, which you can find <a href="https://colab.research.google.com/drive/1dlmV788zrYeUSATZQye1cRflfsr2rk5K" target="_blank">here</a>.
@@ -155,8 +156,8 @@ limitations under the License.
     </section>
 
     <section>
-      <p class='section-head'>Result</p>
-
+      <p class='section-head'>Model input</p>
+      <p>Draw a digit!>/p>
 		<div class="row_res">
 			<div class="col_res" style ='margin-left:100px;'>
 		<h4 id ='status' >Loading Model... </h4>	  
@@ -166,6 +167,12 @@ limitations under the License.
 		<button type="button" class="btn btn-outline-primary" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button>
 			</div>   
 		</div>
+		  
+		</div>
+		
+		
+		<div class="row_res">
+			
 		  <div class="col_res">
 			<section style="margin-top:120px">
 			<h4>Top 5 predictions (with probabilities)</h4><br>
@@ -195,7 +202,9 @@ limitations under the License.
 			</ul>
 		  </section>
 		</div>
-		</div>  
+		</div> 
+		
+		
     </section>
 
     <script src="pie.js"></script>
