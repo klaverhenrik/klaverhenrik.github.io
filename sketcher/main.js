@@ -42,6 +42,10 @@ function setTable(top5, probs) {
         let prob = document.getElementById('prob' + (i + 1))
         sym.innerHTML = top5[i]
         prob.innerHTML = Math.round(probs[i] * 100)
+		if (i == 0) {
+			let pred = document.getElementById('pred')
+			pred.innerHTML = top5[i]	
+		}
     }
     //create the pie 
     createPie(".pieID.legend", ".pieID.pie");
