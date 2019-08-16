@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Handwritten digit recognition</title>
+
+<!-- bs4 css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
+	
+<!-- css pie -->
+<link rel="stylesheet" href="pie.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+<!-- TensorFlow.js script -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+	
+<!-- canvas script -->
+<script src="fabric.js"></script>
+	
+<!-- main script -->
+<script src = "main.js" > </script>
+
+<!-- main css -->
+<link rel = "stylesheet" href="main.css" > 
+	
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#"><h1>Handwritten digit recognition</h1></a>
+  </nav>
+<div class="container-fluid"> 
+
+<blockquote class="blockquote text-justify" style="margin:30px;">
+ <p>This simple demo was inspired by <a href='https://github.com/zaidalyafeai/zaidalyafeai.github.io/tree/master/sketcher' target="_blank">Sketcher</a> by Zaid Alyfeai. Sketcher is a simple tool that uses a Convolutional Neural Network (CNN) to recognize drawings from the <a href='https://www.kaggle.com/c/quickdraw-doodle-recognition' target="_blank">QuickDraw dataset</a>. I modified Sketcher to recognize handwritten digits from 0 to 9.</p>
+ <p>You can easily retrain the CNN to recognize objects of <em>your</em> choice using <a href='https://colab.research.google.com/notebooks/welcome.ipynb' target="_blank">Google Colab</a>. I have provided a template with detailed instructions, which you can find <a href="https://colab.research.google.com/drive/1dlmV788zrYeUSATZQye1cRflfsr2rk5K" target="_blank">here</a>.</p>
+ <p>Draw a digit in the square below. The table  will show the top 5 predictions.</p>
+    <footer class="blockquote-footer">HENRIK PEDERSEN from <cite title="Link"><a href='https://alexandra.dk/uk/about_us/people/henrik-pedersen' target="_blank">The Alexandra Institute</a></cite></footer>
+  </blockquote>
+</div>
+
+<div class="row">
+  <div class="col" style ='margin-left:100px;'>
+<h4 id ='status' >Loading Model... </h4>	  
+<canvas id="canvas" width="300" height="300" class="canvas" style="border:1px solid #b9bfc9;margin-top:25px;"></canvas>
+<div class="btn-group" style = 'margin-top:40px; '>
+<input type="range" min="10" max="40" value="25" class="slider" id="myRange" style ='margin-top:20px;'>
+<button type="button" class="btn btn-outline-primary" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button>
+    </div>   
+</div>
+  <div class="col">
+    <section style="margin-top:120px">
+	<h4>Top 5 predictions (with probabilities)</h4><br>
+    <div class="pieID pie">
+    </div>
+    <ul class="pieID legend">
+      <li>
+        <em id = "sym1"></em>
+        <span id = "prob1" ></span>
+      </li>
+      <li>
+        <em id = "sym2"></em>
+        <span id = "prob2"></span>
+      </li>
+      <li>
+        <em id = "sym3"></em>
+        <span id = "prob3"></span>
+      </li>
+      <li>
+        <em id = "sym4"></em>
+        <span id = "prob4"></span>
+      </li>
+      <li>
+        <em id = "sym5"></em>
+        <span id = "prob5"></span>
+      </li>
+    </ul>
+  </section>
+</div>
+</div>  
+</body>
+<script src="pie.js"></script>
+<script>
+	console.log('starting');
+	start('en')
+</script>
+</html>
