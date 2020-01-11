@@ -53,7 +53,7 @@ const MOBILENET_MODEL_PATH = './mobilenet/model.json';
 
 const IMAGE_SIZE = 224;
 const IMAGE_SIZE_x2 = 448;
-const TOPK_PREDICTIONS = 5;
+const TOPK_PREDICTIONS = 1;
 
 let mobilenet;
 const mobilenetDemo = async () => {
