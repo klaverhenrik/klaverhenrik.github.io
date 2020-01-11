@@ -32,7 +32,7 @@ function drop(ev) {
       img.src = e.target.result;
       img.width = IMAGE_SIZE_x2;
       img.height = IMAGE_SIZE_x2;
-      img.onload = () => predict(img,0,0);
+      img.onload = () => predict(img,0,0,1);
     };
   
   //reader.onload = function(e){
@@ -71,11 +71,11 @@ const mobilenetDemo = async () => {
   // Make a prediction through the locally hosted cat.jpg.
   const catElement = document.getElementById('cat');
   if (catElement.complete && catElement.naturalHeight !== 0) {
-    predict(catElement,0,0);
+    predict(catElement,0,0,1);
     catElement.style.display = '';
   } else {
     catElement.onload = () => {
-      predict(catElement,0,0);
+      predict(catElement,0,0,1);
       catElement.style.display = '';
     }
   }
@@ -87,7 +87,7 @@ const mobilenetDemo = async () => {
  * Given an image element, makes a prediction through mobilenet returning the
  * probabilities of the top K classes.
  */
-async function predict(imgElement,row,col) {
+async function predict(imgElement,row,col,show_img) {
   status('Predicting...');
 
   // The first start time includes the time it takes to extract the image
@@ -126,7 +126,7 @@ async function predict(imgElement,row,col) {
       `(not including preprocessing: ${Math.floor(totalTime2)} ms)`);
 
   // Show the classes in the DOM.
-  showResults(imgElement, classes);
+  showResults(imgElement, classes, show_img);
 }
 
 /**
@@ -166,13 +166,15 @@ export async function getTopKClasses(logits, topK) {
 // UI
 //
 
-function showResults(imgElement, classes) {
+function showResults(imgElement, classes, show_img) {
   const predictionContainer = document.createElement('div');
   predictionContainer.className = 'pred-container';
 
-  const imgContainer = document.createElement('div');
-  imgContainer.appendChild(imgElement);
-  predictionContainer.appendChild(imgContainer);
+  if (show_img == 1) {
+	const imgContainer = document.createElement('div');
+	imgContainer.appendChild(imgElement);
+	predictionContainer.appendChild(imgContainer);
+  }
 
   const probsContainer = document.createElement('div');
   for (let i = 0; i < classes.length; i++) {
@@ -202,7 +204,9 @@ filesElement.addEventListener('change', evt => {
   let files = evt.target.files;
   // Display thumbnails & issue call to predict each image.
   for (let i = 0, f; f = files[i]; i++) {
-	  
+	
+	let show_img = 1
+	
 	for (let row = 0; row < 2; row++) {
 	  for (let col = 0; col < 2; col++) {
 	  
@@ -219,12 +223,13 @@ filesElement.addEventListener('change', evt => {
       img.src = e.target.result;
       img.width = IMAGE_SIZE_x2;
       img.height = IMAGE_SIZE_x2;
-      img.onload = () => predict(img,col,row);
+      img.onload = () => predict(img,col,row,show_img);
     };
 
     // Read in the image file as a data URL.
     reader.readAsDataURL(f);
 	
+	show_img = 0
 	}} // new
   }
 });
