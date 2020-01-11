@@ -32,7 +32,7 @@ function drop(ev) {
       img.src = e.target.result;
       img.width = 2*IMAGE_SIZE;
       img.height = 2*IMAGE_SIZE;
-      img.onload = () => predict(img);
+      img.onload = () => predict(img,0,0);
     };
   
   //reader.onload = function(e){
@@ -86,7 +86,7 @@ const mobilenetDemo = async () => {
  * Given an image element, makes a prediction through mobilenet returning the
  * probabilities of the top K classes.
  */
-async function predict(imgElement) {
+async function predict(imgElement,row,col) {
   status('Predicting...');
 
   // The first start time includes the time it takes to extract the image
@@ -106,8 +106,8 @@ async function predict(imgElement) {
     // Reshape to a single-element batch so we can pass it to predict.
     const batched = normalized.reshape([1, 2*IMAGE_SIZE, 2*IMAGE_SIZE, 3]);
 	
-	const row = 0;
-	const col = 0;
+	//const row = 0;
+	//const col = 0;
 	const cropped = batched.slice([0,row*IMAGE_SIZE,col*IMAGE_SIZE,0],[1,IMAGE_SIZE,IMAGE_SIZE,3]);
 
     startTime2 = performance.now();
@@ -199,6 +199,10 @@ filesElement.addEventListener('change', evt => {
   let files = evt.target.files;
   // Display thumbnails & issue call to predict each image.
   for (let i = 0, f; f = files[i]; i++) {
+	  
+	for (let row = 0; row < 2; row++) {
+	  for (let col = 0; col < 2; col++) {
+	  
     // Only process image files (skip non image files)
     if (!f.type.match('image.*')) {
       continue;
@@ -212,11 +216,13 @@ filesElement.addEventListener('change', evt => {
       img.src = e.target.result;
       img.width = 2*IMAGE_SIZE;
       img.height = 2*IMAGE_SIZE;
-      img.onload = () => predict(img);
+      img.onload = () => predict(img,col,row);
     };
 
     // Read in the image file as a data URL.
     reader.readAsDataURL(f);
+	
+	}} // new
   }
 });
 
