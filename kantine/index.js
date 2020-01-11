@@ -168,6 +168,12 @@ function showResults(imgElement, classes, show_img) {
   const predictionContainer = document.createElement('div');
   predictionContainer.className = 'pred-container';
 
+  if (show_img == 1) {
+	const imgContainer = document.createElement('div');
+	imgContainer.appendChild(imgElement);
+	predictionContainer.appendChild(imgContainer);
+  }
+
   const probsContainer = document.createElement('div');
   for (let i = 0; i < classes.length; i++) {
     const row = document.createElement('div');
@@ -186,12 +192,6 @@ function showResults(imgElement, classes, show_img) {
     probsContainer.appendChild(row);
   }
   predictionContainer.appendChild(probsContainer);
-  
-  if (show_img == 1) {
-	const imgContainer = document.createElement('div');
-	imgContainer.appendChild(imgElement);
-	predictionContainer.appendChild(imgContainer);
-  }
 
   predictionsElement.insertBefore(
       predictionContainer, predictionsElement.firstChild);
