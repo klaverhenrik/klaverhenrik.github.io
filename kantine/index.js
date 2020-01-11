@@ -203,8 +203,6 @@ filesElement.addEventListener('change', evt => {
   // Display thumbnails & issue call to predict each image.
   for (let i = 0, f; f = files[i]; i++) {
 	
-	let show_img = 1
-	
 	for (let row = 0; row < 2; row++) {
 	  for (let col = 0; col < 2; col++) {
 	  
@@ -218,6 +216,7 @@ filesElement.addEventListener('change', evt => {
     reader.onload = e => {
       // Fill the image & call predict.
       let img = document.createElement('img');
+	  const show_img = (row==0 && col==0)
       img.src = e.target.result;
       img.width = IMAGE_SIZE_x2;
       img.height = IMAGE_SIZE_x2;
@@ -227,7 +226,6 @@ filesElement.addEventListener('change', evt => {
     // Read in the image file as a data URL.
     reader.readAsDataURL(f);
 	
-	show_img = 0
 	}} // new
   }
 });
