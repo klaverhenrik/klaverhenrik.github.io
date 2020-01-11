@@ -168,12 +168,6 @@ function showResults(imgElement, classes, show_img) {
   const predictionContainer = document.createElement('div');
   predictionContainer.className = 'pred-container';
 
-  if (show_img == 1) {
-	const imgContainer = document.createElement('div');
-	imgContainer.appendChild(imgElement);
-	predictionContainer.appendChild(imgContainer);
-  }
-
   const probsContainer = document.createElement('div');
   for (let i = 0; i < classes.length; i++) {
     const row = document.createElement('div');
@@ -192,6 +186,12 @@ function showResults(imgElement, classes, show_img) {
     probsContainer.appendChild(row);
   }
   predictionContainer.appendChild(probsContainer);
+  
+  if (show_img == 1) {
+	const imgContainer = document.createElement('div');
+	imgContainer.appendChild(imgElement);
+	predictionContainer.appendChild(imgContainer);
+  }
 
   predictionsElement.insertBefore(
       predictionContainer, predictionsElement.firstChild);
@@ -216,7 +216,7 @@ filesElement.addEventListener('change', evt => {
     reader.onload = e => {
       // Fill the image & call predict.
       let img = document.createElement('img');
-	  const show_img = (row==0 && col==0)
+	  const show_img = (row==1 && col==1)
       img.src = e.target.result;
       img.width = IMAGE_SIZE_x2;
       img.height = IMAGE_SIZE_x2;
