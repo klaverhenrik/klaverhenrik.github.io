@@ -30,8 +30,8 @@ function drop(ev) {
       // Fill the image & call predict.
       let img = document.createElement('img');
       img.src = e.target.result;
-      img.width = 2*IMAGE_SIZE;
-      img.height = 2*IMAGE_SIZE;
+      img.width = IMAGE_SIZE_x2;
+      img.height = IMAGE_SIZE_x2;
       img.onload = () => predict(img,0,0);
     };
   
@@ -52,6 +52,7 @@ const MOBILENET_MODEL_PATH = './mobilenet/model.json';
     //'https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_0.25_224/model.json';
 
 const IMAGE_SIZE = 224;
+const IMAGE_SIZE_x2 = 448;
 const TOPK_PREDICTIONS = 5;
 
 let mobilenet;
@@ -104,7 +105,7 @@ async function predict(imgElement,row,col) {
     const normalized = img.sub(offset).div(offset);
 
     // Reshape to a single-element batch so we can pass it to predict.
-    const batched = normalized.reshape([1, 2*IMAGE_SIZE, 2*IMAGE_SIZE, 3]);
+    const batched = normalized.reshape([1, IMAGE_SIZE_x2, IMAGE_SIZE_x2, 3]);
 	
 	//const row = 0;
 	//const col = 0;
@@ -214,8 +215,8 @@ filesElement.addEventListener('change', evt => {
       // Fill the image & call predict.
       let img = document.createElement('img');
       img.src = e.target.result;
-      img.width = 2*IMAGE_SIZE;
-      img.height = 2*IMAGE_SIZE;
+      img.width = IMAGE_SIZE_x2;
+      img.height = IMAGE_SIZE_x2;
       img.onload = () => predict(img,col,row);
     };
 
