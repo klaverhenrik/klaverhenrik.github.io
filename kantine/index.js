@@ -30,8 +30,8 @@ function drop(ev) {
       // Fill the image & call predict.
       let img = document.createElement('img');
       img.src = e.target.result;
-      img.width = IMAGE_SIZE;
-      img.height = IMAGE_SIZE;
+      img.width = 2*IMAGE_SIZE;
+      img.height = 2*IMAGE_SIZE;
       img.onload = () => predict(img);
     };
   
@@ -104,11 +104,15 @@ async function predict(imgElement) {
     const normalized = img.sub(offset).div(offset);
 
     // Reshape to a single-element batch so we can pass it to predict.
-    const batched = normalized.reshape([1, IMAGE_SIZE, IMAGE_SIZE, 3]);
+    const batched = normalized.reshape([1, 2*IMAGE_SIZE, 2*IMAGE_SIZE, 3]);
+	
+	const row = 0;
+	const col = 0;
+	const cropped = batched.slice([0,row*IMAGE_SIZE,col*IMAGE_SIZE,0],[1,IMAGE_SIZE,IMAGE_SIZE,3]);
 
     startTime2 = performance.now();
     // Make a prediction through mobilenet.
-    return mobilenet.predict(batched);
+    return mobilenet.predict(cropped);
   });
 
   // Convert logits to probabilities and class names.
@@ -206,8 +210,8 @@ filesElement.addEventListener('change', evt => {
       // Fill the image & call predict.
       let img = document.createElement('img');
       img.src = e.target.result;
-      img.width = IMAGE_SIZE;
-      img.height = IMAGE_SIZE;
+      img.width = 2*IMAGE_SIZE;
+      img.height = 2*IMAGE_SIZE;
       img.onload = () => predict(img);
     };
 
