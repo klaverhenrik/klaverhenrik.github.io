@@ -71,11 +71,11 @@ const mobilenetDemo = async () => {
   // Make a prediction through the locally hosted cat.jpg.
   const catElement = document.getElementById('cat');
   if (catElement.complete && catElement.naturalHeight !== 0) {
-    predict(catElement);
+    predict(catElement,0,0);
     catElement.style.display = '';
   } else {
     catElement.onload = () => {
-      predict(catElement);
+      predict(catElement,0,0);
       catElement.style.display = '';
     }
   }
