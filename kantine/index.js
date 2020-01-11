@@ -172,6 +172,9 @@ function showResults(imgElement, classes, show_img) {
 	const imgContainer = document.createElement('div');
 	imgContainer.appendChild(imgElement);
 	predictionContainer.appendChild(imgContainer);
+	
+	const br = document.createElement("br");
+	predictionContainer.appendChild(br);
   }
 
   const probsContainer = document.createElement('div');
