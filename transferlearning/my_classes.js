@@ -1,10 +1,10 @@
 export const IMAGENET_CLASSES = {
-  0: 'bird',
-  1: 'cat',
-  2: 'cows',
-  3: 'dog',
-  4: 'horse',
-  5: 'mouse',
-  6: 'pig',
-  7: 'sheep'
+  0: 'aeble',
+  1: 'background',
+  2: 'banan',
+  3: 'cola',
+  4: 'cookie',
+  5: 'croissant',
+  6: 'kildevand',
+  7: 'sandwich'
 };
