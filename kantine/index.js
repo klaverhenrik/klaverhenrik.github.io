@@ -103,8 +103,6 @@ async function predict(imgElement,row,col,show_img) {
     const offset = tf.scalar(127.5);
     // Normalize the image from [0, 255] to [-1, 1].
     const normalized = img.sub(offset).div(offset);
-	
-	status(`row is ${row} and col is ${col} and img is ${img.shape}`);
 
     // Reshape to a single-element batch so we can pass it to predict.
     const batched = normalized.reshape([1, IMAGE_SIZE_x2, IMAGE_SIZE_x2, 3]);
@@ -229,7 +227,7 @@ filesElement.addEventListener('change', evt => {
     // Read in the image file as a data URL.
     reader.readAsDataURL(f);
 	
-	show_img = 0
+	show_img = 1
 	}} // new
   }
 });
