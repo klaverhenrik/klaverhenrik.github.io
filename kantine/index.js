@@ -227,7 +227,7 @@ filesElement.addEventListener('change', evt => {
     // Read in the image file as a data URL.
     reader.readAsDataURL(f);
 	
-	show_img = 1
+	show_img = 0
 	}} // new
   }
 });
