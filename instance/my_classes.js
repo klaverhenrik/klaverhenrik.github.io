@@ -6,5 +6,5 @@ export const IMAGENET_CLASSES = {
   4: 'cookie',
   5: 'croissant',
   6: 'kildevand',
-  7: 'sandwich'
+  7: 'wrap'
 };
