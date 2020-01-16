@@ -1,6 +1,6 @@
 export const IMAGENET_CLASSES = {
   0: 'aeble',
-  1: 'background',
+  1: 'tom',
   2: 'banan',
   3: 'cola',
   4: 'cookie',
