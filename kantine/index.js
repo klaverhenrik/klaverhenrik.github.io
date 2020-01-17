@@ -253,8 +253,7 @@ filesElement.addEventListener('change', evt => {
 	reader.onload = e => {
 	  // Fill the image & call predict.
 	  let img = document.createElement('img');
-	  const show_img = (row==1 && col==1)
-	  img.src = e.target.result;
+	   img.src = e.target.result;
 	  img.onload = () => showImage(img);
 	};
 	// Read in the image file as a data URL.
