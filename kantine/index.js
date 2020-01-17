@@ -210,6 +210,9 @@ function showImage(imgElement) {
 	
 	const br = document.createElement("br");
 	predictionContainer.appendChild(br);
+	
+	predictionsElement.insertBefore(
+      predictionContainer, predictionsElement.firstChild);
 }
 
 const filesElement = document.getElementById('files');
