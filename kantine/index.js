@@ -168,14 +168,14 @@ function showResults(imgElement, classes, show_img) {
   const predictionContainer = document.createElement('div');
   predictionContainer.className = 'pred-container';
 
-  if (show_img == 1) {
-	const imgContainer = document.createElement('div');
-	imgContainer.appendChild(imgElement);
-	predictionContainer.appendChild(imgContainer);
-	
-	const br = document.createElement("br");
-	predictionContainer.appendChild(br);
-  }
+//  if (show_img == 1) {
+//	const imgContainer = document.createElement('div');
+//	imgContainer.appendChild(imgElement);
+//	predictionContainer.appendChild(imgContainer);
+//	
+//	const br = document.createElement("br");
+//	predictionContainer.appendChild(br);
+//  }
 
   const probsContainer = document.createElement('div');
   for (let i = 0; i < classes.length; i++) {
@@ -200,6 +200,18 @@ function showResults(imgElement, classes, show_img) {
       predictionContainer, predictionsElement.firstChild);
 }
 
+function showImage(imgElement) {
+  const predictionContainer = document.createElement('div');
+  predictionContainer.className = 'pred-container';
+
+	const imgContainer = document.createElement('div');
+	imgContainer.appendChild(imgElement);
+	predictionContainer.appendChild(imgContainer);
+	
+	const br = document.createElement("br");
+	predictionContainer.appendChild(br);
+}
+
 const filesElement = document.getElementById('files');
 filesElement.addEventListener('change', evt => {
   let files = evt.target.files;
@@ -209,27 +221,42 @@ filesElement.addEventListener('change', evt => {
 	for (let row = 0; row < 2; row++) {
 	  for (let col = 0; col < 2; col++) {
 	  
-    // Only process image files (skip non image files)
-    if (!f.type.match('image.*')) {
-      continue;
-    }
-    let reader = new FileReader();
-    const idx = i;
-    // Closure to capture the file information.
-    reader.onload = e => {
-      // Fill the image & call predict.
-      let img = document.createElement('img');
-	  const show_img = (row==1 && col==1)
-      img.src = e.target.result;
-      img.width = IMAGE_SIZE_x2;
-      img.height = IMAGE_SIZE_x2;
-      img.onload = () => predict(img,col,row,show_img);
-    };
+		// Only process image files (skip non image files)
+		if (!f.type.match('image.*')) {
+		  continue;
+		}
+		let reader = new FileReader();
+		const idx = i;
+		// Closure to capture the file information.
+		reader.onload = e => {
+		  // Fill the image & call predict.
+		  let img = document.createElement('img');
+		  const show_img = (row==1 && col==1)
+		  img.src = e.target.result;
+		  img.width = IMAGE_SIZE_x2;
+		  img.height = IMAGE_SIZE_x2;
+		  img.onload = () => predict(img,col,row,show_img);
+		};
 
-    // Read in the image file as a data URL.
-    reader.readAsDataURL(f);
+		// Read in the image file as a data URL.
+		reader.readAsDataURL(f);
 	
 	}} // new
+	
+	// Only process image files (skip non image files)
+	if (!f.type.match('image.*')) {
+	  continue;
+	}
+	let reader = new FileReader();
+	const idx = i;
+	// Closure to capture the file information.
+	reader.onload = e => {
+	  // Fill the image & call predict.
+	  let img = document.createElement('img');
+	  const show_img = (row==1 && col==1)
+	  img.src = e.target.result;
+	  img.onload = () => showImage(img);
+	};
   }
 });
 
