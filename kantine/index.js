@@ -257,6 +257,9 @@ filesElement.addEventListener('change', evt => {
 	  img.src = e.target.result;
 	  img.onload = () => showImage(img);
 	};
+	// Read in the image file as a data URL.
+	reader.readAsDataURL(f);
+	
   }
 });
 
