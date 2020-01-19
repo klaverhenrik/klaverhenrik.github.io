@@ -1,8 +1,8 @@
-aeble
-background
-banan
-cola
-cookie
-croissant
-kildevand
-sandwich
+bird
+cat
+cows
+dog
+horse
+mouse
+pig
+sheep
